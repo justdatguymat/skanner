@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ "$1" = "b" ]; then
+    mvn package
+fi
+
+java -jar target/skanner-1.0.jar

@@ -1,0 +1,32 @@
+# Add files names (and patterns) you want git to ignore here.
+
+# Ignore java .class files.
+*.class
+*/*.class
+
+# Ignore compiled C/C++ files.
+*.o
+
+# Project files
+workbench.xmi
+*/*.iws
+*.iws
+.idea/
+.idea/workspace.xml
+.idea/skanner.iml
+
+# Ignore everything in the build directory.
+build/
+target/
+/bin/
+out/
+
+# vim cache files
+*.swp
+*/*.swp
+
+.idea*.log
+*.log
+*.log.lck
+.attach*
+

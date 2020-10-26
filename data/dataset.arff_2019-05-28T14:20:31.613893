@@ -1,0 +1,21 @@
+@relation StockPrediction
+
+@attribute date date yyyy-MM-dd
+@attribute positives numeric
+@attribute neutrals numeric
+@attribute negatives numeric
+@attribute total_tweets numeric
+@attribute total_articles numeric
+@attribute volume numeric
+@attribute low_price numeric
+@attribute high_price numeric
+@attribute open_price numeric
+@attribute close_price numeric
+@attribute price_change numeric
+
+@data
+2019-05-20,0,6,3,0,9,3798200,1835.540039,1867.780029,1852.689941,1858.969971,-0.077998
+2019-05-21,0,6,0,0,6,4005100,1846,1879,1874.790039,1857.52002,0.116286
+2019-05-22,0,7,2,0,9,2936600,1851,1871.48999,1851.780029,1859.680054,-2.376757
+2019-05-23,7,10,23,18,22,4424300,1804.199951,1844,1836.589966,1815.47998,0.429641
+2019-05-24,7,9,24,18,22,3369700,1817.849976,1841.76001,1835.890015,1823.280029,0

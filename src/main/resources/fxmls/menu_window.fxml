@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+<fx:root type="javafx.scene.layout.AnchorPane" fx:controller="com.koltunm.skanner.ui.controllers.MenuWindow" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml">
+-->
+
+<fx:root type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+    <VBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+       <padding>
+          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+       </padding>
+       <children>
+            <Button fx:id="btnLoad" defaultButton="true" mnemonicParsing="false" onAction="#actionLoad" prefWidth="200.0" text="Load data">
+               <padding>
+                  <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+               </padding>
+            </Button>
+        <Button fx:id="btnFetch" mnemonicParsing="false" onAction="#actionFetch" prefWidth="200.0" text="Fetch data">
+             <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+             </padding>
+          </Button>
+            <Button fx:id="btnAnalyze" disable="true" layoutX="30.0" layoutY="96.0" mnemonicParsing="false" onAction="#actionAnalyze" prefWidth="200.0" text="Analyse">
+               <padding>
+                  <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+               </padding>
+            </Button>
+          <Button fx:id="btnData" disable="true" mnemonicParsing="false" onAction="#actionShowData" prefWidth="200.0" text="View data">
+             <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+             </padding>
+          </Button>
+          <Button fx:id="btnSave" disable="true" layoutX="30.0" layoutY="96.0" mnemonicParsing="false" onAction="#actionSave" prefWidth="200.0" text="Save">
+             <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+             </padding>
+          </Button>
+          <Button fx:id="btnPredict" disable="true" layoutX="30.0" layoutY="162.0" mnemonicParsing="false" onAction="#actionPredict" prefWidth="200.0" text="Make prediction">
+             <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+             </padding>
+          </Button>
+       </children>
+    </VBox>
+</children>
+</fx:root>

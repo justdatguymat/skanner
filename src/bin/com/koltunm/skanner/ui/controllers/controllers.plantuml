@@ -1,0 +1,362 @@
+@startuml
+
+title __CONTROLLERS's Class Diagram__\n
+
+  package com.koltunm.skanner {
+    package com.koltunm.skanner.ui {
+      package com.koltunm.skanner.ui.controllers {
+        class AnalysisWindow {
+            - FXML_FILE : String
+            + txtTickerSymbol : TextField
+            + txtQuery : TextField
+            + boxSentiment : HBox
+            + lblSentiment : Label
+            + pbSentiment : ProgressIndicator
+            + btnBack : Button
+            + btnCancelProceed : Button
+            + AnalysisWindow()
+            + reset()
+            + initialize()
+            + open()
+            - startSentimentAnalysis()
+            + actionBack()
+            + actionCancelProceed()
+            - closeWindow()
+            + onComplete()
+        }
+      }
+    }
+  }
+  
+
+  package com.koltunm.skanner {
+    package com.koltunm.skanner.ui {
+      package com.koltunm.skanner.ui.controllers {
+        class FetcherWindow {
+            - FXML_FILE : String
+            + btnBack : Button
+            + btnFetchCancel : Button
+            + btnProceed : Button
+            + dpFrom : DatePicker
+            + dpTo : DatePicker
+            + boxArticleFetcher : HBox
+            + boxStockFetcher : HBox
+            + boxTwitterFetcher : HBox
+            + lblArticleFetcher : Label
+            + lblStockFetcher : Label
+            + lblTwitterFetcher : Label
+            + pbArticleFetcher : ProgressIndicator
+            + pbStockFetcher : ProgressIndicator
+            + pbTwitterFetcher : ProgressIndicator
+            + sliderInterval : Slider
+            + sliderPageSize : Slider
+            + sliderGrouping : Slider
+            + txtQuery : TextField
+            + txtTickerSymbol : TextField
+            + FetcherWindow()
+            + reset()
+            + initialize()
+            - cancel()
+            - fetch()
+            - startFetchingTweets()
+            - startFetchingStockData()
+            - startFetchingArticles()
+            + onComplete()
+            + actionBack()
+            + actionFetchCancel()
+            + actionProceed()
+        }
+      }
+    }
+  }
+  
+
+  package com.koltunm.skanner {
+    package com.koltunm.skanner.ui {
+      package com.koltunm.skanner.ui.controllers {
+        enum State {
+          FETCHING
+          STANDBY
+        }
+      }
+    }
+  }
+  
+
+  package com.koltunm.skanner {
+    package com.koltunm.skanner.ui {
+      package com.koltunm.skanner.ui.controllers {
+        class MenuWindow {
+            - FXML_FILE : String
+            + btnFetch : Button
+            + btnLoad : Button
+            + btnData : Button
+            + btnSave : Button
+            + btnAnalyze : Button
+            + btnPredict : Button
+            + MenuWindow()
+            + reset()
+            + initialize()
+            + actionLoad()
+            + actionFetch()
+            + actionShowData()
+            + actionAnalyze()
+            + actionSave()
+            + actionPredict()
+        }
+      }
+    }
+  }
+  
+
+  package com.koltunm.skanner {
+    package com.koltunm.skanner.ui {
+      package com.koltunm.skanner.ui.controllers {
+        class PredictionWindow {
+            - FXML_FILE : String
+            + btnBack : Button
+            + lblAmountChange : Label
+            + lblPrice : Label
+            + lblHeading : Label
+            + lblPercentChange : Label
+            + lineChart : LineChart
+            + txtSummary : TextArea
+            + boxCharts : VBox
+            + PredictionWindow()
+            + reset()
+            + initialize()
+            + open()
+            - setLineChart()
+            + actionBack()
+            - closeWindow()
+            + onComplete()
+        }
+      }
+    }
+  }
+  
+
+  package com.koltunm.skanner {
+    package com.koltunm.skanner.ui {
+      package com.koltunm.skanner.ui.controllers {
+        class ViewWindow {
+            - FXML_FILE : String
+            + tableStock : TableView
+            + tableDataset : TableView
+            + tableAnalysis : TableView
+            + boxCharts : VBox
+            + boxViewContainer : VBox
+            + listArticles : ListView<ArticleFeed>
+            + listTweets : ListView<TweetFeed>
+            + btnRefresh : Button
+            + lineChart : LineChart
+            + scrollPaneTweets : ScrollPane
+            + scrollPaneArticles : ScrollPane
+            - articleBuffer : ObservableList<ArticleFeed>
+            - articleBigData : ObservableList<ArticleFeed>
+            - tweetBuffer : ObservableList<TweetFeed>
+            - tweetBigData : ObservableList<TweetFeed>
+            - feedArticleStart : int
+            - feedTweetStart : int
+            - feedStep : int
+            + ViewWindow()
+            + initialize()
+            - initStockTable()
+            - initAnalysisTable()
+            - initDatasetTable()
+            - initTweetListViews()
+            - initArticleListViews()
+            - loadArticleImages()
+            + reset()
+            + open()
+            + actionRefresh()
+            - loadData()
+            - setDatasetTable()
+            - setStockTableData()
+            - setAnalysisTable()
+            - setArticleFeed()
+            - setTweetFeed()
+            - setLineChart()
+            - getListViewScrollBar()
+        }
+      }
+    }
+  }
+  
+
+  package com.koltunm.skanner {
+    package com.koltunm.skanner.ui {
+      package com.koltunm.skanner.ui.controllers {
+        abstract class WindowPane {
+            - modality : Modality
+            - scene : Scene
+            {abstract} + reset()
+            {abstract} + initialize()
+            + WindowPane()
+            ~ init()
+            + setModality()
+            + open()
+            ~ sendAlert()
+        }
+      }
+    }
+  }
+  
+
+  AnalysisWindow -up-|> UIAction
+  AnalysisWindow -up-|> WindowPane
+  ShapeProperty -up-|> Runnable
+  ShapeProperty -up-|> StyleableObjectProperty
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  MinPrefMaxProperty -up-|> StyleableDoubleProperty
+  ValueWrapper -up-|> DoubleBinding
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  InsetsProperty -up-|> ReadOnlyObjectProperty
+  LazyBoundsProperty -up-|> ReadOnlyObjectProperty
+  LazyTransformProperty -up-|> ReadOnlyObjectProperty
+  TreeVisiblePropertyReadOnly -up-|> BooleanExpression
+  TreeShowingPropertyReadOnly -up-|> BooleanExpression
+  FocusedProperty -up-|> ReadOnlyBooleanPropertyBase
+  EffectiveOrientationProperty -up-|> ReadOnlyObjectPropertyBase
+  NodeTransformation +-down- LocalToSceneTransformProperty
+  LocalToSceneTransformProperty -up-|> LazyTransformProperty
+  ReadOnlyObjectWrapperManualFire -up-|> ReadOnlyObjectWrapper
+  ReadOnlyPropertyImpl -up-|> ReadOnlyObjectPropertyBase
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  FetcherWindow -up-|> UIAction
+  FetcherWindow -up-|> WindowPane
+  FetcherWindow o-- State : state
+  FetcherWindow +-down- State
+  ShapeProperty -up-|> Runnable
+  ShapeProperty -up-|> StyleableObjectProperty
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  MinPrefMaxProperty -up-|> StyleableDoubleProperty
+  ValueWrapper -up-|> DoubleBinding
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  InsetsProperty -up-|> ReadOnlyObjectProperty
+  LazyBoundsProperty -up-|> ReadOnlyObjectProperty
+  LazyTransformProperty -up-|> ReadOnlyObjectProperty
+  TreeVisiblePropertyReadOnly -up-|> BooleanExpression
+  TreeShowingPropertyReadOnly -up-|> BooleanExpression
+  FocusedProperty -up-|> ReadOnlyBooleanPropertyBase
+  EffectiveOrientationProperty -up-|> ReadOnlyObjectPropertyBase
+  NodeTransformation +-down- LocalToSceneTransformProperty
+  LocalToSceneTransformProperty -up-|> LazyTransformProperty
+  ReadOnlyObjectWrapperManualFire -up-|> ReadOnlyObjectWrapper
+  ReadOnlyPropertyImpl -up-|> ReadOnlyObjectPropertyBase
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  MenuWindow -up-|> Initializable
+  MenuWindow -up-|> WindowPane
+  MenuWindow o-- FetcherWindow : fetcherWindow
+  MenuWindow o-- ViewWindow : viewWindow
+  MenuWindow o-- AnalysisWindow : analysisWindow
+  MenuWindow o-- PredictionWindow : predictionWindow
+  ShapeProperty -up-|> Runnable
+  ShapeProperty -up-|> StyleableObjectProperty
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  MinPrefMaxProperty -up-|> StyleableDoubleProperty
+  ValueWrapper -up-|> DoubleBinding
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  InsetsProperty -up-|> ReadOnlyObjectProperty
+  LazyBoundsProperty -up-|> ReadOnlyObjectProperty
+  LazyTransformProperty -up-|> ReadOnlyObjectProperty
+  TreeVisiblePropertyReadOnly -up-|> BooleanExpression
+  TreeShowingPropertyReadOnly -up-|> BooleanExpression
+  FocusedProperty -up-|> ReadOnlyBooleanPropertyBase
+  EffectiveOrientationProperty -up-|> ReadOnlyObjectPropertyBase
+  NodeTransformation +-down- LocalToSceneTransformProperty
+  LocalToSceneTransformProperty -up-|> LazyTransformProperty
+  ReadOnlyObjectWrapperManualFire -up-|> ReadOnlyObjectWrapper
+  ReadOnlyPropertyImpl -up-|> ReadOnlyObjectPropertyBase
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  PredictionWindow -up-|> UIAction
+  PredictionWindow -up-|> WindowPane
+  PredictionWindow o-- FetcherForm : fetcherForm
+  PredictionWindow o-- PredictionResult : predictionResult
+  ShapeProperty -up-|> Runnable
+  ShapeProperty -up-|> StyleableObjectProperty
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  MinPrefMaxProperty -up-|> StyleableDoubleProperty
+  ValueWrapper -up-|> DoubleBinding
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  InsetsProperty -up-|> ReadOnlyObjectProperty
+  LazyBoundsProperty -up-|> ReadOnlyObjectProperty
+  LazyTransformProperty -up-|> ReadOnlyObjectProperty
+  TreeVisiblePropertyReadOnly -up-|> BooleanExpression
+  TreeShowingPropertyReadOnly -up-|> BooleanExpression
+  FocusedProperty -up-|> ReadOnlyBooleanPropertyBase
+  EffectiveOrientationProperty -up-|> ReadOnlyObjectPropertyBase
+  NodeTransformation +-down- LocalToSceneTransformProperty
+  LocalToSceneTransformProperty -up-|> LazyTransformProperty
+  ReadOnlyObjectWrapperManualFire -up-|> ReadOnlyObjectWrapper
+  ReadOnlyPropertyImpl -up-|> ReadOnlyObjectPropertyBase
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  ViewWindow -up-|> WindowPane
+  ShapeProperty -up-|> Runnable
+  ShapeProperty -up-|> StyleableObjectProperty
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  MinPrefMaxProperty -up-|> StyleableDoubleProperty
+  ValueWrapper -up-|> DoubleBinding
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  InsetsProperty -up-|> ReadOnlyObjectProperty
+  LazyBoundsProperty -up-|> ReadOnlyObjectProperty
+  LazyTransformProperty -up-|> ReadOnlyObjectProperty
+  TreeVisiblePropertyReadOnly -up-|> BooleanExpression
+  TreeShowingPropertyReadOnly -up-|> BooleanExpression
+  FocusedProperty -up-|> ReadOnlyBooleanPropertyBase
+  EffectiveOrientationProperty -up-|> ReadOnlyObjectPropertyBase
+  NodeTransformation +-down- LocalToSceneTransformProperty
+  LocalToSceneTransformProperty -up-|> LazyTransformProperty
+  ReadOnlyObjectWrapperManualFire -up-|> ReadOnlyObjectWrapper
+  ReadOnlyPropertyImpl -up-|> ReadOnlyObjectPropertyBase
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  WindowPane -up-|> Initializable
+  WindowPane -up-|> AnchorPane
+  WindowPane o-- SkannerInterface : skanner
+  WindowPane o-- MenuWindow : menuWindow
+  ShapeProperty -up-|> Runnable
+  ShapeProperty -up-|> StyleableObjectProperty
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  MinPrefMaxProperty -up-|> StyleableDoubleProperty
+  ValueWrapper -up-|> DoubleBinding
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+  InsetsProperty -up-|> ReadOnlyObjectProperty
+  LazyBoundsProperty -up-|> ReadOnlyObjectProperty
+  LazyTransformProperty -up-|> ReadOnlyObjectProperty
+  TreeVisiblePropertyReadOnly -up-|> BooleanExpression
+  TreeShowingPropertyReadOnly -up-|> BooleanExpression
+  FocusedProperty -up-|> ReadOnlyBooleanPropertyBase
+  EffectiveOrientationProperty -up-|> ReadOnlyObjectPropertyBase
+  NodeTransformation +-down- LocalToSceneTransformProperty
+  LocalToSceneTransformProperty -up-|> LazyTransformProperty
+  ReadOnlyObjectWrapperManualFire -up-|> ReadOnlyObjectWrapper
+  ReadOnlyPropertyImpl -up-|> ReadOnlyObjectPropertyBase
+  Listener -up-|> InvalidationListener
+  Listener -up-|> WeakListener
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

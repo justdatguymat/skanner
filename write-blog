@@ -1,0 +1,32 @@
+#!/bin/bash
+
+THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" >/dev/null 2>&1 && pwd  )"
+BLOG_FILE="$THISDIR/docs/blog/blog.md"
+
+if [ -z "$1" ] || [ -z "$2" ]; then
+    echo "You forgot about something."
+    exit 1
+fi
+
+title="## $1"
+msg="$2"
+
+line="\n\n-----\n\n"
+datestr="\n\n<div align=\"right\"> $(date) </div>\n\n"
+banner="\n\n<div align=\"center\"> <img src=\"./images/mario_banner_1.png\" height=\"30px\"> </div>\n\n"
+
+post="\n$title$datestr   $msg$banner$line"
+printf "$post" >> $BLOG_FILE
+
+staged=$(git diff --cached --numstat | wc -l)
+if [ $staged -gt 0 ]; then
+    echo "Some files already staged, not committing. "
+    exit 2
+fi
+
+git add $BLOG_FILE
+
+git commit -m "added blog post: $title"
+git push 
+
+
